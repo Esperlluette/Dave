@@ -12,9 +12,10 @@ namespace Dave.Strategies
         FileSystem,
         Mails
     }
-    public abstract class Strategie
+    public abstract class Strategie<T>
     {
-        public required Remover<Type> Remover;
-        public required List<string> Bin;
+        public Subject subject;
+        public Remover<T>? Remover;
+        public List<string> Bin = new List<string>();
     }
 }

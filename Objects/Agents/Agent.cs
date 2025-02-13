@@ -8,16 +8,13 @@ using Dave.Strategies;
 
 namespace Dave.Objects.Agents
 {
-    public class Agent
+    public abstract class Agent<T>
     {
-        public required Strategie strategie;
-        public Agent(Strategie strategie)
+        public Strategie<T> strategie;
+        public Agent(Strategie<T> strategie)
         {
             this.strategie = strategie;
         }
-        public void Crawl()
-        {
-            throw new NotImplementedException();
-        }
+        public abstract void Crawl();
     }
 }

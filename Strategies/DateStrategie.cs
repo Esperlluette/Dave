@@ -8,13 +8,14 @@ namespace Dave.Strategies
         After,
         ExacteDate
     }
-    internal class DateStrategie : Strategie
+    internal class DateStrategie<T> : Strategie<T>
     {
         private DateTime predicat;
         private PredicatType PredicatType;
-        public DateStrategie(Subject subject,DateTime predicat, Remover<Type> remover, PredicatType predicatType = PredicatType.Before)
+        public DateStrategie(Subject subject,DateTime predicat, Remover<T> remover, PredicatType predicatType = PredicatType.Before)
         {
             this.predicat = predicat;
+            base.subject = subject;
             base.Remover = remover;
             base.Bin = new List<string>();
             PredicatType = predicatType;
