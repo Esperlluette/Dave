@@ -17,5 +17,8 @@ namespace Dave.Strategies
         public Subject subject;
         public Remover<T>? Remover;
         public List<string> Bin = new List<string>();
+
+        public abstract void AddToBin();
+        public abstract bool SatisfiesPredicate(T obj);
     }
 }

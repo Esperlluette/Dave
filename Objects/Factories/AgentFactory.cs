@@ -6,14 +6,14 @@ namespace Dave.Objects.Factories
 {
     public static class AgentFactory<T>
     {
-        public static FileAgent<string> GetFilebasedAgent(Subject subject, string root)
+        public static FileAgent<string> GetFilebasedAgent(Subject subject, string root, DateTime condition)
         {
             Remover<string> remover = new FileRemover();
             return
                 new FileAgent<string>(
                     new DateStrategie<string>(
                         subject,
-                        DateTime.Now,
+                        condition,
                         remover,
                         PredicatType.After
                     ), 

@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Dave.Strategies;
+﻿using Dave.Strategies;
 
 namespace Dave.Objects.Agents
 {
@@ -27,7 +22,7 @@ namespace Dave.Objects.Agents
                 {
                     throw new Exception("Répertoire inexistant");
                 }
-            fileFromRoot = Directory.GetFiles(root, "*.*", SearchOption.AllDirectories).ToList();
+                fileFromRoot = Directory.GetFiles(root, "*.*", SearchOption.AllDirectories).ToList();
             }
         }
 
@@ -38,6 +33,13 @@ namespace Dave.Objects.Agents
                 case Subject.Mails:
                     break;
                 case Subject.FileSystem:
+                    var list = this.fileFromRoot?.ToArray() ?? [] ;
+                    foreach (var item in list)
+                    {
+                       if (strategie.SatisfiesPredicate(File.GetLastAccessTime(item).ToString())) {
+                            strategie.Remover.Remove(item);
+                        }
+                    }
                     break;
                 default:
                     throw new Exception("Aucun sujet de stratégie choisi.");

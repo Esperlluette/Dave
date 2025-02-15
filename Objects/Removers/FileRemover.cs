@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Microsoft.Extensions.Logging;
+using NLog;
 
 namespace Dave.Objects.Removers
 {
@@ -14,10 +16,14 @@ namespace Dave.Objects.Removers
 
         public override void Remove(string path)
         {
-            if (!File.Exists(path))
+            try
             {
-                throw new Exception("Fichier inexistant ou non présent.");
+                if (File.Exists(path))
+                {
+                    File.Delete(path);
+                }
             }
+            catch (Exception ex) { }
         }
 
     }

@@ -8,7 +8,7 @@ namespace Dave.Strategies
         After,
         ExacteDate
     }
-    internal class DateStrategie<T> : Strategie<T>
+    public class DateStrategie<T> : Strategie<T>
     {
         private DateTime predicat;
         private PredicatType PredicatType;
@@ -21,17 +21,25 @@ namespace Dave.Strategies
             PredicatType = predicatType;
         }
 
-        private bool SatisfiesPredicate(DateTime time)
+        public override void AddToBin()
         {
+            throw new NotImplementedException();
+        }
+
+
+        public override bool SatisfiesPredicate(T time)
+        {
+            if (time is null) return false;
+            if (DateTime.TryParse(time.ToString(), out DateTime outTime) is false) return false;
             switch (PredicatType)
             {
                 default:
                 case PredicatType.Before:
-                    return time < predicat;
+                    return outTime < predicat;
                 case PredicatType.After:
-                    return time > predicat;
+                    return outTime > predicat;
                 case PredicatType.ExacteDate:
-                    return time == predicat;
+                    return outTime == predicat;
             }
         }
     }
