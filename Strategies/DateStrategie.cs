@@ -30,7 +30,7 @@ namespace Dave.Strategies
         public override bool SatisfiesPredicate(T time)
         {
             if (time is null) return false;
-            if (DateTime.TryParse(time.ToString(), out DateTime outTime) is false) return false;
+            if (DateTime.TryParse(time.ToString(), out DateTime outTime) is false) throw new Exception("Impossible to parse 'T time' To DateTime time. DateStragetie.SatisfiesPredicate()");
             switch (PredicatType)
             {
                 default:
